@@ -25,7 +25,7 @@ class Tier(models.Model):
 
 
 class CustomUser(AbstractUser):
-    tier = models.ForeignKey(to='Tier', null=True, default=None, on_delete=models.CASCADE)
+    tier = models.ForeignKey(to='Tier', null=True, default=None, on_delete=models.SET_NULL)
 
 
 def nameFile(instance, filename):

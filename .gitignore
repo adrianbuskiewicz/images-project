@@ -1,0 +1,6 @@
+img_env/
+images_env/
+__pycache__/
+media/*
+db.sqlite3
+.idea
