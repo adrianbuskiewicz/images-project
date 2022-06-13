@@ -59,7 +59,6 @@ class ExpiringLinkCreateView(views.APIView):
             img = get_object_or_404(ImageFile, id=data['img_id'])
             token = token_urlsafe(20)
             url = request.build_absolute_uri(f'/api/{token}')
-            print(url)
             link = ExpiringLink(
                 image=img,
                 token=token,
