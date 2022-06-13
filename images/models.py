@@ -9,6 +9,8 @@ from django.core.files.base import ContentFile
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from django_random_id_model import RandomIDModel
+from django.utils import timezone
 
 
 # Create your models here.
@@ -25,14 +27,14 @@ class Tier(models.Model):
 
 
 class CustomUser(AbstractUser):
-    tier = models.ForeignKey(to='Tier', null=True, default=None, on_delete=models.SET_NULL)
+    tier = models.ForeignKey(to='Tier', null=True, default=None, on_delete=models.CASCADE)
 
 
 def nameFile(instance, filename):
     return f'images/{instance.user}-{filename}'
 
 
-class ImageFile(models.Model):
+class ImageFile(RandomIDModel):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     date_uploaded = models.DateTimeField(auto_now_add=True)
@@ -83,6 +85,24 @@ class ImageFile(models.Model):
         temp_thumb.close()
 
         return thumb_filename, content
+
+
+class ExpiringLinkManager(models.Manager):
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            time_to_expire__gte=timezone.now()
+        )
+
+
+class ExpiringLink(models.Model):
+    image = models.ForeignKey(ImageFile, on_delete=models.CASCADE, related_name='expiring_links')
+    token = models.CharField(max_length=30)
+    expiring_url = models.URLField()
+    time_to_expire = models.DateTimeField(default=timezone.now())
+
+    objects = ExpiringLinkManager()
+
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
