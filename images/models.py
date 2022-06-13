@@ -99,10 +99,9 @@ class ExpiringLink(models.Model):
     image = models.ForeignKey(ImageFile, on_delete=models.CASCADE, related_name='expiring_links')
     token = models.CharField(max_length=30)
     expiring_url = models.URLField()
-    time_to_expire = models.DateTimeField(default=timezone.now())
+    time_to_expire = models.DateTimeField(default=timezone.now)
 
     objects = ExpiringLinkManager()
-
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
