@@ -39,7 +39,7 @@ class CustomUserAdmin(UserAdmin):
 
 
 class ImageAdmin(admin.ModelAdmin):
-    exclude = ['id']
+    exclude = ['id', 'small_thumbnail', 'big_thumbnail']
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Tier)
