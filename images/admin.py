@@ -43,5 +43,5 @@ class ImageAdmin(admin.ModelAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Tier)
-admin.site.register(ImageFile)
+admin.site.register(ImageFile, ImageAdmin)
 admin.site.register(ExpiringLink)
