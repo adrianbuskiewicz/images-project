@@ -39,6 +39,7 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
             'expiring_links',
         )
         read_only_fields = (
+            'id',
             'user',
             'date_uploaded',
             'small_thumbnail',
