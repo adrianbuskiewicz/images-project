@@ -66,7 +66,7 @@ Parameters in body:
 - #### seconds
 
 
-## Testing with Docker exec.
+## Testing in root directory (images-project).
 ```bash
-docker exec -it <container_id> python manage.py test images
+pytest
 ```
