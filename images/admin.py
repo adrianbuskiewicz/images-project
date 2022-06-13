@@ -1,23 +1,19 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Tier, ImageFile
+from .models import CustomUser, Tier, ImageFile, ExpiringLink
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 # Register your models here.
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
-from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta:
         model = CustomUser
         fields = ('username',)
 
 
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model = CustomUser
         fields = ('username',)
@@ -37,10 +33,12 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('username', 'password1', 'password2', 'tier', 'is_staff')}
-        ),
+         ),
     )
     ordering = ('is_superuser', 'is_staff', 'username')
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Tier)
 admin.site.register(ImageFile)
+admin.site.register(ExpiringLink)
