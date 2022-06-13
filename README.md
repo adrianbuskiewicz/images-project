@@ -8,7 +8,7 @@
 * restframework-serializer-permissions 0.0.2
 
 
-# Installation
+## Installation
 
 ### Clone the GitHub repository to your directory.
 
@@ -35,7 +35,7 @@ docker exec -it <container_id> python manage.py createsuperuser
 ### After creating a superuser remember to give him a tier if you want to use him as a normal user!
 
 
-# Usage of REST API
+## Usage of REST API
 
 ### App uses standard DRF SessionAuthentication and TokenAuthentication (including the token in headers is necessary).
 
