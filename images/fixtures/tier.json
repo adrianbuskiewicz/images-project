@@ -1,0 +1,32 @@
+[
+    {
+        "model":"images.tier",
+        "pk":1,
+        "fields":{
+            "name":"Basic",
+            "can_bigger_size":false,
+            "can_original_image":false,
+            "can_expiring_link":false
+        }
+    },
+    {
+        "model":"images.tier",
+        "pk":2,
+        "fields":{
+            "name":"Premium",
+            "can_bigger_size":true,
+            "can_original_image":true,
+            "can_expiring_link":false
+        }
+    },
+    {
+        "model":"images.tier",
+        "pk":3,
+        "fields":{
+            "name":"Enterprise",
+            "can_bigger_size":true,
+            "can_original_image":true,
+            "can_expiring_link":true
+        }
+    }
+]
