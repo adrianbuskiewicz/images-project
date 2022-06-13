@@ -50,7 +50,7 @@ curl -H "Authorization: Token <user_token>" http://127.0.0.1:8000/api/
 
 
 ### POST method for uploading images by user
-`POST /api/`
+`POST /api/upload/`
 
 Parameters in body:
 - #### title
