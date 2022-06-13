@@ -38,6 +38,9 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('is_superuser', 'is_staff', 'username')
 
 
+class ImageAdmin(admin.ModelAdmin):
+    exclude = ['id']
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Tier)
 admin.site.register(ImageFile)
